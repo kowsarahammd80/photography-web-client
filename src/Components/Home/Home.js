@@ -19,7 +19,7 @@ const Home = () => {
           <Together></Together>
         </div>
 
-        <Block></Block>
+        {/* <Block></Block> */}
          
     </div>
   );
