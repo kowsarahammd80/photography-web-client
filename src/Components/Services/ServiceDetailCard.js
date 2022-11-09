@@ -2,8 +2,7 @@ import React from 'react';
 
 const ServiceDetailCard = ({services}) => {
     
-   const {serviceName, serviceImage, serviceDetail} = services
-
+  
   return (
     <div className='container'>
 
@@ -11,13 +10,13 @@ const ServiceDetailCard = ({services}) => {
 
         <div className='col-6'>
           
-          <img src={serviceImage} alt="" />
+         
            
         </div> 
         
         <div className='col-6'>
 
-          <h3>{serviceName}</h3>
+         
 
         </div>
 
