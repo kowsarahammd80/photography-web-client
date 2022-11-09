@@ -6,16 +6,18 @@ const Services = ({len}) => {
   const [services, setServices] = useState([])
 
   useEffect(() => {
-    fetch('services.json')
+
+    fetch('http://localhost:5000/services')
     .then(res => res.json())
     .then(data => setServices(data))
+    
   },[])
 
   let length = 0;
   !len ? length = services.length : length = len ;
 
   return (
-    <div className='container'>
+    <div className='container mt-3'>
            
            <h3 className='text-center font-style mt-2 mb-3'>See Of Service</h3>
             <h5 className='text-center mb-3'>TWO HEARTS THAT BEAT AS ONE!</h5>

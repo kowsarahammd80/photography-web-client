@@ -15,13 +15,13 @@ const Home = () => {
        <HomeBanner></HomeBanner>
           
        <div>
-             
               <Services len={3}/>
               <div className='text-center mb-5'>
                <Link to='/services'>
                  <button className='bg-dark text-light px-3 py-2 rounded-2 '>Show All Service</button>
                </Link>  
-              </div>   
+              </div>  
+               
           </div> 
 
        

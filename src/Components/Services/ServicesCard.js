@@ -23,7 +23,7 @@ const ServicesCard = ({ service }) => {
             <p>Rating : {rating}</p>
           </div>
 
-          <div className='d-flex justify-content-between align-items-center p-3'>
+          <div className='  p-3 text-center'>
 
 
             <div>
@@ -34,11 +34,6 @@ const ServicesCard = ({ service }) => {
 
             </div>
 
-            <div>
-
-              <button className=''>Review</button>
-
-            </div>
 
           </div>
 
