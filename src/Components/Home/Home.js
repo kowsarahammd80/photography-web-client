@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Block from '../Block/Block';
 import Party from '../Party/Party';
 import Services from '../Services/Services';
+import UseTitle from '../Title/Title';
 
 import Together from '../Together/Together';
 import HomeBanner from './HomeBanner';
 
 const Home = () => {
-  
+   
+  UseTitle("Home")
+
   return (
     <div>
         
@@ -34,9 +36,6 @@ const Home = () => {
           <Party></Party>
         </div>
 
-         
-
-        <Block></Block>
          
     </div>
   );

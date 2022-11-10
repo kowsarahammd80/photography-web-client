@@ -46,6 +46,10 @@ const Header = () => {
                   </li>
 
                   <li>
+                    <Link to='/myreview' className='nav-link text-light fw-bold' >My Review</Link>
+                  </li>
+
+                  <li>
                     <button onClick={handleLogOut} className='btn btn-warning text-light fw-bold'>Log Out</button>
                   </li>
 

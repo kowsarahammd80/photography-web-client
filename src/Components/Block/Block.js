@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import UseTitle from '../Title/Title';
 import BlockCard from './BlockCard';
 
 const Block = () => {
+  UseTitle("Blogs")
   const [blogs, setblogs] = useState([]);
 
   useEffect(() => {

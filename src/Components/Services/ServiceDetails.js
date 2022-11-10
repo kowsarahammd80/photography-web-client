@@ -5,11 +5,14 @@ import TextReview from './TextReview';
 import ShowReview from './ShowReview';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import Spiner from '../../Sheard/Spiner/Spiner';
+import UseTitle from '../Title/Title';
 
 
 
 
 const ServiceDetails = () => {
+
+  UseTitle("Service")
 
   const { serviceName, serviceImage, serviceDetail, price, rating, _id } = useLoaderData()
 

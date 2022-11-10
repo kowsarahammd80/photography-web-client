@@ -1,9 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import UseTitle from '../Title/Title';
 import MyReviewCard from './MyReviewCard';
 
+
+
 const MyReview = () => {
+
+  UseTitle("My Review")
 
   const { user } = useContext(AuthContext);
 
@@ -23,7 +28,9 @@ const MyReview = () => {
       })
       .catch(error => console.log(error))
 
-  }, [userEmails])
+  }, [userEmails]);
+
+
 
   let handleDelete = (id) => {
     const proceed = window.confirm("Are you sure, you want to delete this review");
@@ -62,7 +69,11 @@ const MyReview = () => {
     }
   }
 
+
+
   return (
+
+
     <div className='container'>
 
       <h3 className='text-center mt-2'>There have my review</h3>
@@ -72,7 +83,7 @@ const MyReview = () => {
         <div className='row '>
 
           {
-            userEmails.map(userEmail => <MyReviewCard key={userEmail._id}
+            userEmails?.map(userEmail => <MyReviewCard key={userEmail._id}
               userEmail={userEmail}
               handleDelete={handleDelete}
             ></MyReviewCard>)
@@ -84,7 +95,10 @@ const MyReview = () => {
 
       </div>
     </div>
+
+
   );
+
 };
 
 export default MyReview;
