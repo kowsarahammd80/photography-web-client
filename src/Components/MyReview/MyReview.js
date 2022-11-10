@@ -1,14 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
-import UseTitle from '../Title/Title';
 import MyReviewCard from './MyReviewCard';
 
 
-
 const MyReview = () => {
-
-  UseTitle("My Review")
 
   const { user } = useContext(AuthContext);
 
