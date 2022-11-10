@@ -7,3 +7,12 @@
  
 }
 
+.review-img img{
+  min-height: 10vh;
+}
+
+.height-div{
+  height: 100px;
+}
+
+

@@ -34,6 +34,16 @@ const Header = () => {
             <li className="nav-item">
               <Link to='/blog' className='nav-link text-light fw-bold'>Blogs</Link>
             </li>
+
+            <li>
+              <Link to='/addService' className='nav-link text-light fw-bold'>Add Service</Link>
+            </li>
+
+            <li>
+              
+               <Link className='nav-link text-light fw-bold' to='/myreview'>My Review</Link>
+
+            </li>
             
            {
              user?.uid ?
