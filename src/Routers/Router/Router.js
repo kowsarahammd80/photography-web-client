@@ -18,7 +18,7 @@ let router = createBrowserRouter([
     element: <Main></Main>,
     children: [
       {
-        path:'/',
+        path: '/',
         element: <Home></Home>
       },
 
@@ -29,7 +29,7 @@ let router = createBrowserRouter([
 
       {
         path: '/blog',
-        element:<Block></Block>
+        element: <Block></Block>
       },
       {
         path: '/login',
@@ -42,7 +42,7 @@ let router = createBrowserRouter([
       {
         path: '/services/:id',
         element: <ServiceDetails></ServiceDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+        loader: ({ params }) => fetch(`https://photography-web-server.vercel.app/services/${params.id}`)
       },
       {
         path: '/addService',
@@ -50,11 +50,11 @@ let router = createBrowserRouter([
       },
 
       {
-         path: '/myreview',
-         element: <MyReview></MyReview>
+        path: '/myreview',
+        element: <MyReview></MyReview>
       }
     ]
-    
+
   }
 ])
 

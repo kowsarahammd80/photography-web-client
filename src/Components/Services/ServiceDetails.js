@@ -13,21 +13,21 @@ const ServiceDetails = () => {
 
   const { serviceName, serviceImage, serviceDetail, price, rating, _id } = useLoaderData()
 
-  const {loading} = useContext(AuthContext)
+  const { loading } = useContext(AuthContext)
 
   const [showReviews, setShowReviews] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${_id}`,{
+    fetch(`https://photography-web-server.vercel.app/reviews/${_id}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('photo-token')}`
       }
-      
+
     })
       .then(res => res.json())
       .then(data => {
-        if(loading.data){
-          <Spiner/>
+        if (loading.data) {
+          <Spiner />
         }
         setShowReviews(data)
       })
@@ -82,22 +82,22 @@ const ServiceDetails = () => {
         <div className='row '>
 
 
-            {
-              showReviews.map(showReview => <ShowReview
-                key={showReview._id}
-                showReview={showReview}
-              ></ShowReview>)
-            }
-
-
-          </div>
+          {
+            showReviews.map(showReview => <ShowReview
+              key={showReview._id}
+              showReview={showReview}
+            ></ShowReview>)
+          }
 
 
         </div>
 
+
       </div>
 
-    
+    </div>
+
+
   );
 };
 

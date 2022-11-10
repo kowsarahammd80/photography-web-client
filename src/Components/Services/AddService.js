@@ -36,7 +36,7 @@ const AddService = () => {
 
     }
 
-    fetch('http://localhost:5000/services', {
+    fetch('https://photography-web-server.vercel.app/services', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -47,18 +47,18 @@ const AddService = () => {
       .then(res => res.json())
       .then(data => {
         setAddServices(data)
-        
-          toast.success('Service Add Success', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        
+
+        toast.success('Service Add Success', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+
         form.reset()
       })
       .catch(error => console.error(error))
@@ -121,7 +121,7 @@ const AddService = () => {
         </form>
 
       </div>
-      <ToastContainer />      
+      <ToastContainer />
 
     </div>
   );

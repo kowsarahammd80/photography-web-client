@@ -5,30 +5,30 @@ import MyReviewCard from './MyReviewCard';
 
 const MyReview = () => {
 
-  const {user} = useContext(AuthContext); 
-   
+  const { user } = useContext(AuthContext);
+
   const [userEmails, setUserEmails] = useState([]);
 
   useEffect(() => {
-   fetch(`http://localhost:5000/myreview/${user?.email}`,{
-    headers: {
-      authorization: `Bearer ${localStorage.getItem('photo-token')}`
-    }
-    
-  })
-   .then(res => res.json())
-   .then(data => {
-    setUserEmails(data)
+    fetch(`https://photography-web-server.vercel.app/myreview/${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('photo-token')}`
+      }
 
-  })
-   .catch(error => console.log(error))
+    })
+      .then(res => res.json())
+      .then(data => {
+        setUserEmails(data)
 
-  },[userEmails])
+      })
+      .catch(error => console.log(error))
+
+  }, [userEmails])
 
   let handleDelete = (id) => {
     const proceed = window.confirm("Are you sure, you want to delete this review");
     if (proceed) {
-      fetch(`http://localhost:5000/myreview/${id}`, {
+      fetch(`https://photography-web-server.vercel.app/myreview/${id}`, {
 
         method: 'DELETE',
 
@@ -56,7 +56,7 @@ const MyReview = () => {
 
             let remaining = userEmails.filter(email => email._id !== id);
             setUserEmails(remaining);
-            
+
           }
         })
     }
@@ -64,9 +64,9 @@ const MyReview = () => {
 
   return (
     <div className='container'>
-       
-       <h3 className='text-center mt-2'>There have my review</h3>
-       
+
+      <h3 className='text-center mt-2'>There have my review</h3>
+
       <div className='container mt-5 mb-4'>
 
         <div className='row '>
@@ -74,11 +74,11 @@ const MyReview = () => {
           {
             userEmails.map(userEmail => <MyReviewCard key={userEmail._id}
               userEmail={userEmail}
-            handleDelete={ handleDelete}
+              handleDelete={handleDelete}
             ></MyReviewCard>)
           }
-         
-         <ToastContainer /> 
+
+          <ToastContainer />
 
         </div>
 

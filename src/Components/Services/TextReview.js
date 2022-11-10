@@ -7,7 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 const TextReview = () => {
   const { user } = useContext(AuthContext)
 
-  const {_id, serviceName,} = useLoaderData()
+  const { _id, serviceName, } = useLoaderData()
 
   const [reviewes, setReviewes] = useState([])
 
@@ -19,44 +19,44 @@ const TextReview = () => {
     const userTime = moment().format("MMM Do YYYY, h:mm:ss a");
 
     const reviews = {
-      review : `${review}`,
+      review: `${review}`,
       image: `${user.photoURL}`,
       email: `${user.email}`,
-      name:`${user.displayName}`,
+      name: `${user.displayName}`,
       serviceName: `${serviceName}`,
       serviceId: `${_id}`,
       Time: `${userTime}`
     }
-    
-    fetch('http://localhost:5000/reviews', {
+
+    fetch('https://photography-web-server.vercel.app/reviews', {
       method: 'POST',
-      headers:{
+      headers: {
         'content-type': 'application/json',
         authorization: `Bearer ${localStorage.getItem('photo-token')}`
-        
+
       },
-      body:  JSON.stringify(reviews)
+      body: JSON.stringify(reviews)
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      setReviewes(data)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        setReviewes(data)
 
-      toast.success('Service Add Success', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      
-    })
-    .catch(error => console.error(error))
+        toast.success('Service Add Success', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
 
-   form.reset() 
+      })
+      .catch(error => console.error(error))
+
+    form.reset()
 
   }
 
@@ -71,26 +71,26 @@ const TextReview = () => {
             <form onSubmit={handleReviewPost}>
 
               <div class="mb-2 mt-4">
-                
-               <div className='text-center'>
-               <img src={user.photoURL} alt="" className='img-fluid rounded-circle w-15 img-hight height-div'  />
-                <div className='mb-2 mt-2'>
-                  <p>{user.displayName}</p>
-                <input type="text" name="email" id="" defaultValue={user.email} readOnly />
-                </div>
-               </div>
 
-               <textarea class="form-control" id="exampleFormControlTextarea1" name='review' rows="3" />
+                <div className='text-center'>
+                  <img src={user.photoURL} alt="" className='img-fluid rounded-circle w-15 img-hight height-div' />
+                  <div className='mb-2 mt-2'>
+                    <p>{user.displayName}</p>
+                    <input type="text" name="email" id="" defaultValue={user.email} readOnly />
+                  </div>
+                </div>
+
+                <textarea class="form-control" id="exampleFormControlTextarea1" name='review' rows="3" />
 
               </div>
 
-               <div className='mb-2 d-flex justify-content-end'>
+              <div className='mb-2 d-flex justify-content-end'>
 
-                  <button type='submit' className='btn bg-dark text-light'>Post</button>
+                <button type='submit' className='btn bg-dark text-light'>Post</button>
 
-               </div>
+              </div>
 
-               <ToastContainer />
+              <ToastContainer />
 
             </form>
 
