@@ -11,7 +11,7 @@ const MyReviewCard = ({userEmail, handleDelete,  handleStatusUpdat}) => {
       <div className='bg-color'>
 
         <img src={image} alt="" className='img-fluid rounded-circle review-img h-25  w-25 p-3' />
-         <p>{name}</p>
+         {/* <p>{name}</p> */}
          <p>{email}</p>
 
         <div class=" border p-2">
