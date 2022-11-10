@@ -1,17 +1,18 @@
 import moment from 'moment/moment';
 import React, { useState } from 'react';
-import toast from 'react-hot-toast';
+import { toast, ToastContainer } from 'react-toastify';
+
 import UseTitle from '../Title/Title';
 
 
 const AddService = () => {
-     
+
   const [addServices, setAddServices] = useState([])
 
   UseTitle("Add Service")
 
   let handlerAddService = (event) => {
-      
+
     event.preventDefault()
     const form = event.target;
     const serviceImage = form.serviceImage.value;
@@ -19,16 +20,16 @@ const AddService = () => {
     const rating = form.rating.value;
     const price = form.price.value;
     const serviceDetail = form.serviceDetail.value;
-   
-    
-      
+
+
+
     const time = moment().format('MMMM Do YYYY, h:mm:ss a');
 
-    const servicePost ={
+    const servicePost = {
 
       serviceImage: `${serviceImage}`,
       serviceName: `${serviceName}`,
-      rating:`${rating}`,
+      rating: `${rating}`,
       price: `${price}`,
       serviceDetail: `${serviceDetail}`,
       time: `${time}`
@@ -39,18 +40,28 @@ const AddService = () => {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('photo-token')}`
       },
       body: JSON.stringify(servicePost)
     })
-    .then(res => res.json())
-    .then(data => {
-      setAddServices(data)
-      if(data.acknowledged === true){
-        toast.success('Success')
-      }
-       form.reset()
-    })
-    .catch(error => console.error(error))
+      .then(res => res.json())
+      .then(data => {
+        setAddServices(data)
+        
+          toast.success('Service Add Success', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        
+        form.reset()
+      })
+      .catch(error => console.error(error))
 
 
   }
@@ -58,7 +69,7 @@ const AddService = () => {
   return (
     <div className='container'>
 
-       <h5 className='text-center mt-3'>Add Your Service</h5>
+      <h5 className='text-center mt-3'>Add Your Service</h5>
 
       <div className='container mt-4 mb-5'>
 
@@ -110,6 +121,7 @@ const AddService = () => {
         </form>
 
       </div>
+      <ToastContainer />      
 
     </div>
   );

@@ -13,7 +13,7 @@ const Home = () => {
     <div>
         
        <HomeBanner></HomeBanner>
-          
+    
        <div>
               <Services len={3}/>
               <div className='text-center mb-5'>

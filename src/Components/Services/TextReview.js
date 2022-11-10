@@ -21,6 +21,7 @@ const TextReview = () => {
       review : `${review}`,
       image: `${user.photoURL}`,
       email: `${user.email}`,
+      name:`${user.displayName}`,
       serviceName: `${serviceName}`,
       serviceId: `${_id}`,
       Time: `${userTime}`
@@ -30,12 +31,19 @@ const TextReview = () => {
       method: 'POST',
       headers:{
         'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('photo-token')}`
+        
       },
       body:  JSON.stringify(reviews)
     })
     .then(res => res.json())
-    .then(data => setReviewes(data))
+    .then(data => {
+      setReviewes(data)
+
+    })
     .catch(error => console.error(error))
+
+   form.reset() 
 
   }
 
@@ -54,6 +62,7 @@ const TextReview = () => {
                <div className='text-center'>
                <img src={user.photoURL} alt="" className='img-fluid rounded-circle w-15 img-hight height-div'  />
                 <div className='mb-2 mt-2'>
+                  <p>{user.displayName}</p>
                 <input type="text" name="email" id="" defaultValue={user.email} readOnly />
                 </div>
                </div>

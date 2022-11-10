@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './ServicesCard.css';
 import { useLoaderData } from 'react-router-dom';
 import TextReview from './TextReview';
 import ShowReview from './ShowReview';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import Spiner from '../../Sheard/Spiner/Spiner';
 
 
 
@@ -11,15 +13,27 @@ const ServiceDetails = () => {
 
   const { serviceName, serviceImage, serviceDetail, price, rating, _id } = useLoaderData()
 
+  const {loading} = useContext(AuthContext)
+
   const [showReviews, setShowReviews] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${_id}`)
-    .then(res => res.json())
-    .then(data => setShowReviews(data))
-    .catch(error => console.error(error))
+    fetch(`http://localhost:5000/reviews/${_id}`,{
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('photo-token')}`
+      }
+      
+    })
+      .then(res => res.json())
+      .then(data => {
+        if(loading.data){
+          <Spiner/>
+        }
+        setShowReviews(data)
+      })
+      .catch(error => console.error(error))
 
-  }, [])
+  }, [showReviews])
 
 
   return (
@@ -63,17 +77,16 @@ const ServiceDetails = () => {
 
       {/* review get */}
 
-      <div className='container'>
+      <div className='container '>
 
         <div className='row '>
 
-          <div className='col-12 d-flex  justify-content-center align-items-center'>
 
             {
-              showReviews.map( showReview => <ShowReview
-               key={showReview._id}
-               showReview={showReview}
-              ></ShowReview> )
+              showReviews.map(showReview => <ShowReview
+                key={showReview._id}
+                showReview={showReview}
+              ></ShowReview>)
             }
 
 
@@ -84,7 +97,7 @@ const ServiceDetails = () => {
 
       </div>
 
-    </div>
+    
   );
 };
 

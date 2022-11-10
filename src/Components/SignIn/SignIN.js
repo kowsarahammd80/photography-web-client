@@ -2,17 +2,18 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import SocialSIgnIn from '../../Sheard/SocalSignIn/SocialSIgnIn';
+import Spiner from '../../Sheard/Spiner/Spiner';
 
 
 const SignIN = () => {
   let [error, setError] = useState('')
 
-  let { signIn } = useContext(AuthContext);
-  
-   const location = useLocation();
-   const navigate = useNavigate();
+  let { signIn, loading } = useContext(AuthContext);
 
-   const from = location.state?.from.pathname || '/';
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from.pathname || '/';
 
   let handleSubmit = (event) => {
 
@@ -25,8 +26,35 @@ const SignIN = () => {
     signIn(email, password)
       .then(result => {
         let user = result.user
-        console.log(user)
-        navigate(from, {replace: true})
+
+        const currentUser = {
+          email: user.email
+        }
+        console.log(currentUser);
+
+        // get jwt token 
+        fetch('https://genius-car-server-snowy.vercel.app/jwt', {
+
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(currentUser)
+
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+
+            // local storage is the easiest but not the best prectice to storage
+            localStorage.setItem('photo-token', data.token);
+            if(loading){
+              <Spiner/>
+            }
+
+            navigate(from, { replace: true });
+
+          });
       })
       .catch(error => {
         console.error(error)
@@ -85,8 +113,8 @@ const SignIN = () => {
               <p className='text-danger'>{error}</p>
             </>
             <div className=''>
-            <p className='text-center'>Need User? <Link to="/signUp" className='forgotPass'> Sign Up </Link> </p>
-          </div>
+              <p className='text-center'>Need User? <Link to="/signUp" className='forgotPass'> Sign Up </Link> </p>
+            </div>
 
             <div className='pt-4'>
               <button type="submit" className="btn submitButton btn-lg bg-info w-100">Sign In</button>
@@ -94,7 +122,7 @@ const SignIN = () => {
 
           </form>
 
-          <SocialSIgnIn/>  
+          <SocialSIgnIn />
 
         </div>
 

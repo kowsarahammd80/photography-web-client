@@ -9,7 +9,8 @@ const MyReview = () => {
   const [userEmails, setUserEmails] = useState([]);
 
   useEffect(() => {
-   fetch(`http://localhost:5000/myreview/${user?.email}`,{
+    
+   fetch(`http://localhost:5000/myreview/${user?.email}`, {
     headers: {
       authorization: `Bearer ${localStorage.getItem('photo-token')}`
     }
@@ -20,6 +21,8 @@ const MyReview = () => {
    .catch(error => console.log(error))
 
   },[userEmails])
+
+
 
   let handleDelete = (id) => {
     const proceed = window.confirm("Are you sure, you want to delete this review");
@@ -45,6 +48,8 @@ const MyReview = () => {
     }
   }
 
+  
+
   return (
     <div className='container'>
        
@@ -55,9 +60,8 @@ const MyReview = () => {
         <div className='row '>
 
           {
-            userEmails.map(userEmail => <MyReviewCard key={userEmail._id}
-              userEmail={userEmail}
-            handleDelete={ handleDelete}
+            userEmails?.map(userEmail => <MyReviewCard key={userEmail._id}
+              userEmail={userEmail} handleDelete={handleDelete}
             ></MyReviewCard>)
           }
 

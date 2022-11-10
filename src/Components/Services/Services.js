@@ -1,15 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import Spiner from '../../Sheard/Spiner/Spiner';
 import ServicesCard from './ServicesCard';
 
 const Services = ({len}) => {
+
+  const {loading} = useContext(AuthContext)
    
   const [services, setServices] = useState([])
 
   useEffect(() => {
 
-    fetch('http://localhost:5000/services')
+    fetch('http://localhost:5000/services', 
+    {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('photo-token')}`
+      }
+      
+    }
+    )
     .then(res => res.json())
-    .then(data => setServices(data))
+    .then(data => {
+       console.log(data)
+      setServices(data)
+      
+    })
     
   },[])
 

@@ -8,6 +8,7 @@ import Services from "../../Components/Services/Services";
 import SignIN from "../../Components/SignIn/SignIN";
 import SignUP from "../../Components/SignUp/SignUP";
 import Main from "../../Laout/Main";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
 
@@ -20,10 +21,12 @@ let router = createBrowserRouter([
         path:'/',
         element: <Home></Home>
       },
+
       {
         path: '/services',
         element: <Services></Services>
       },
+
       {
         path: '/blog',
         element:<Block></Block>

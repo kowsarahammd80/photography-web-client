@@ -7,8 +7,6 @@ import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 
 
-
-
 const SocialSIgnIn = () => {
   
   let {providerLogin} = useContext(AuthContext)
@@ -21,6 +19,9 @@ const SocialSIgnIn = () => {
     .then(result => {
        let user = result.user;
        console.log(user)
+        
+    
+
     })
     .catch(error => console.error(error))
 
