@@ -4,9 +4,7 @@ import Spiner from '../../Sheard/Spiner/Spiner';
 import ServicesCard from './ServicesCard';
 
 const Services = ({len}) => {
-
-  const {loading} = useContext(AuthContext)
-   
+    
   const [services, setServices] = useState([])
 
   useEffect(() => {
@@ -22,6 +20,7 @@ const Services = ({len}) => {
     .then(res => res.json())
     .then(data => {
        console.log(data)
+       
       setServices(data)
       
     })

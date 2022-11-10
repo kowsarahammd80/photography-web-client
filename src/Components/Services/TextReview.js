@@ -2,6 +2,7 @@ import moment from 'moment/moment';
 import React, { useContext, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import { toast, ToastContainer } from 'react-toastify';
 
 const TextReview = () => {
   const { user } = useContext(AuthContext)
@@ -38,8 +39,20 @@ const TextReview = () => {
     })
     .then(res => res.json())
     .then(data => {
+      console.log(data)
       setReviewes(data)
 
+      toast.success('Service Add Success', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      
     })
     .catch(error => console.error(error))
 
@@ -76,6 +89,8 @@ const TextReview = () => {
                   <button type='submit' className='btn bg-dark text-light'>Post</button>
 
                </div>
+
+               <ToastContainer />
 
             </form>
 

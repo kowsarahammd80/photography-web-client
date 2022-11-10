@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import MyReviewCard from './MyReviewCard';
 
@@ -16,7 +17,10 @@ const MyReview = () => {
     
   })
    .then(res => res.json())
-   .then(data => setUserEmails(data))
+   .then(data => {
+    setUserEmails(data)
+
+  })
    .catch(error => console.log(error))
 
   },[userEmails])
@@ -37,9 +41,22 @@ const MyReview = () => {
         .then(data => {
           console.log(data);
           if (data.deletedCount > 0) {
-            alert('deleted seccessfully');
+
+            toast.success('Delete Your Post', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+
+            });
+
             let remaining = userEmails.filter(email => email._id !== id);
             setUserEmails(remaining);
+            
           }
         })
     }
@@ -60,7 +77,8 @@ const MyReview = () => {
             handleDelete={ handleDelete}
             ></MyReviewCard>)
           }
-
+         
+         <ToastContainer /> 
 
         </div>
 
